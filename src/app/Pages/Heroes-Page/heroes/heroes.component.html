@@ -1,1 +1,98 @@
-<p>heroes works!</p>
+<div class="container-fluid">
+  <p-table #dt [value]="heroesList" [(selection)]="selectedHero" dataKey="id" styleClass="p-datatable-customers"
+           [rowHover]="true"
+           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+           [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [filterDelay]="0" [globalFilterFields]="['name','country.Name','phoneNumber','email', 'company']">
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        List of Heroes
+        <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                               placeholder="Global Search"/>
+                    </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">Name
+          <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="country.Name">Country
+          <p-sortIcon field="country.Name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="date">Date
+          <p-sortIcon field="date"></p-sortIcon>
+        </th>
+        <th pSortableColumn="phoneNumber">Phone
+          <p-sortIcon field="phoneNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email">Email
+          <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th pSortableColumn="company">Company
+          <p-sortIcon field="company"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+
+        <th>
+          <input pInputText class="w-100" type="text" (input)="dt.filter($event.target.value, 'name', 'startsWith')"
+                 placeholder="Search by Name" >
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'country.Name', 'contains')"
+                 placeholder="Search by Country" class="w-100">
+        </th>
+        <th>
+          <p-calendar (onSelect)="onDateSelect($event)" (onClearClick)="dt.filter('', 'date', 'equals')"
+                      [showButtonBar]="true" styleClass="w-100" placeholder="Date"
+                      [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
+        </th>
+
+        <th>
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'phoneNumber', 'contains')"
+                 placeholder="Search by Phone" class="w-100">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'email', 'contains')"
+                 placeholder="Search by Email" class="w-100">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'company', 'contains')"
+                 placeholder="Search by Company" class="w-100">
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-hero>
+      <tr class="p-selectable-row">
+        <td>
+          {{hero.name}}
+        </td>
+        <td>
+          <img [src]="hero.country.Flag" [alt]="hero.country.Alpha3Code" width="30" class="mr-3">
+          <span class="image-text">{{hero.country.Name}}</span>
+        </td>
+        <td>
+          {{hero.date | date}}
+        </td>
+        <td>
+          {{hero.phoneNumber}}
+        </td>
+        <td>
+          {{hero.email}}
+        </td>
+        <td>
+          {{hero.company}}
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">No heroes found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

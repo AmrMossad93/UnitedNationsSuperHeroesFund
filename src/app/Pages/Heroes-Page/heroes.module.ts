@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { HeroesComponent } from './heroes/heroes.component';
+import {AngularMaterialModule} from '../../DesignModules/angular-material.module';
+import {PrimeNgModule} from '../../DesignModules/prime-ng.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { HeroesComponent } from './heroes/heroes.component';
   ],
   imports: [
     CommonModule,
-    HeroesRoutingModule
+    HeroesRoutingModule,
+    AngularMaterialModule,
+    PrimeNgModule
   ]
 })
 export class HeroesModule { }
