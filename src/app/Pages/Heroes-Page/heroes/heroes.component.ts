@@ -24,6 +24,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroList(): void {
+    this.loading = true;
     this.route.data.subscribe((res) => {
       this.heroesList = res.list;
       this.loading = false;
