@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './Layouts/navbar/navbar.component';
 import {AngularMaterialModule} from './DesignModules/angular-material.module';
 import {HttpClientModule} from '@angular/common/http';
+import {httpInterceptorProviders} from './Interceptors';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
     AngularMaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -4,6 +4,8 @@ import {IHero} from '../../../Models/hero';
 import {Table} from 'primeng/table';
 import {PrimeNGConfig} from 'primeng/api';
 import {ActivatedRoute} from '@angular/router';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
 
 @Component({
   selector: 'app-heroes',
@@ -16,7 +18,7 @@ export class HeroesComponent implements OnInit {
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
@@ -48,5 +50,15 @@ export class HeroesComponent implements OnInit {
     }
 
     return date.getFullYear() + '-' + month + '-' + day;
+  }
+
+  openFilterBottomSheet(): void {
+    const bottomSheetRef = this.bottomSheet.open(FilterHeroesComponent, {
+      data: {amr: 'amr'},
+    });
+    bottomSheetRef.afterDismissed().subscribe((result) => {
+      console.log('Bottom sheet has been dismissed.');
+      console.log(result);
+    });
   }
 }

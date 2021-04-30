@@ -2,7 +2,8 @@
   <mat-card class="mb-3">
     <div class="row">
       <div class="col-md-12">
-        <button mat-mini-fab color="default" matTooltip="Filter" [matTooltipPosition]="'below'">
+        <button mat-mini-fab color="default" matTooltip="Filter" [matTooltipPosition]="'below'"
+                (click)="openFilterBottomSheet()">
           <mat-icon>filter_list</mat-icon>
         </button>
         <button class="float-right" color="primary" mat-mini-fab matTooltip="Add New Hero"
