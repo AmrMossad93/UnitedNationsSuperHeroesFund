@@ -9,6 +9,9 @@ import {AngularMaterialModule} from '../DesignModules/angular-material.module';
   declarations: [
     JumbotronComponent
   ],
+  exports: [
+    JumbotronComponent
+  ],
   imports: [
     CommonModule,
     AngularMaterialModule
