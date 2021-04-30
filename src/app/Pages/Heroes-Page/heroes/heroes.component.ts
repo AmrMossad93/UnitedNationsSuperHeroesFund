@@ -13,7 +13,7 @@ export class HeroesComponent implements OnInit {
   heroesList: IHero[] = [];
   selectedHero = {} as IHero;
   loading: boolean = true;
-  @ViewChild('dt') table: Table;
+  @ViewChild('dt') table!: Table;
 
   constructor(private heroesService: HeroesService) {
   }
