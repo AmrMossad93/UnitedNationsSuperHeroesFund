@@ -3,6 +3,7 @@ import {HeroesService} from '../../../Services/heroes.service';
 import {IHero} from '../../../Models/hero';
 import {Table} from 'primeng/table';
 import {PrimeNGConfig} from 'primeng/api';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -15,7 +16,7 @@ export class HeroesComponent implements OnInit {
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
 
-  constructor(private heroesService: HeroesService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -23,8 +24,8 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroList(): void {
-    this.heroesService.getHeroList().subscribe(res => {
-      this.heroesList = res;
+    this.route.data.subscribe((res) => {
+      this.heroesList = res.list;
       this.loading = false;
     });
   }
