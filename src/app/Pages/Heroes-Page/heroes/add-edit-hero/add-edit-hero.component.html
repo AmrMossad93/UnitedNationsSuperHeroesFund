@@ -5,13 +5,14 @@
     <div class="col-md-6">
       <mat-form-field class="w-100">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="data.email" name="email" placeholder="Email" required>
+        <input matInput [(ngModel)]="data.email" name="email" placeholder="Email" required ngvemail>
       </mat-form-field>
     </div>
     <div class="col-md-6">
       <mat-form-field class="w-100">
         <mat-label>Phone Number</mat-label>
-        <input matInput [(ngModel)]="data.phoneNumber" name="phoneNumber" placeholder="phoneNumber" required>
+        <input matInput [(ngModel)]="data.phoneNumber" name="phoneNumber" placeholder="Phone Number" required
+               [pattern]="'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'">
       </mat-form-field>
     </div>
     <div class="col-md-6">

@@ -9,6 +9,7 @@ import { FilterHeroesComponent } from './heroes/filter-heroes/filter-heroes.comp
 import {FormsModule} from '@angular/forms';
 import { AddEditHeroComponent } from './heroes/add-edit-hero/add-edit-hero.component';
 import { DeleteHeroComponent } from './heroes/delete-hero/delete-hero.component';
+import {CustomFormsModule} from "ngx-custom-validators";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DeleteHeroComponent } from './heroes/delete-hero/delete-hero.component'
         HeroesRoutingModule,
         AngularMaterialModule,
         PrimeNgModule,
-        FormsModule
+        FormsModule,
+        CustomFormsModule
     ]
 })
 export class HeroesModule { }
