@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HeroesService} from '../../../Services/heroes.service';
 import {IHero} from '../../../Models/hero';
 import {Table} from 'primeng/table';
 import {MenuItem, PrimeNGConfig} from 'primeng/api';
@@ -9,6 +8,8 @@ import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AddEditHeroComponent} from './add-edit-hero/add-edit-hero.component';
 import {DatePipe} from '@angular/common';
+import {v4 as uuidv4} from 'uuid';
+
 
 @Component({
   selector: 'app-heroes',
@@ -27,6 +28,9 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const myuuid = uuidv4();
+
+    console.log('Your UUID is: ' + myuuid);
     this.items = [
       {
         label: 'Edit', icon: 'pi pi-pencil', command: () => {
@@ -109,8 +113,8 @@ export class HeroesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         const heroOBJ = {
+          id: uuidv4(),
           name: result.name,
           phoneNumber: result.phoneNumber,
           email: result.email,
@@ -124,6 +128,7 @@ export class HeroesComponent implements OnInit {
           }
         } as IHero;
         this.heroesList.push(heroOBJ);
+        console.log(this.heroesList);
       }
     });
   }
