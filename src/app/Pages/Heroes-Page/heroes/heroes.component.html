@@ -6,6 +6,12 @@
                 (click)="openFilterBottomSheet()">
           <mat-icon>filter_list</mat-icon>
         </button>
+        <button mat-mini-fab color="default" matTooltip="Clear Filter" class="ml-2 animate__animated animate__zoomIn"
+                *ngIf="showCloseBtn"
+                [matTooltipPosition]="'below'"
+                (click)=" onClearFilter()">
+          <mat-icon>close</mat-icon>
+        </button>
         <button class="float-right" color="primary" mat-mini-fab matTooltip="Add New Hero" (click)="onAddHero()"
                 [matTooltipPosition]="'below'">
           <mat-icon>add</mat-icon>

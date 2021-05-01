@@ -11,7 +11,7 @@ import {DatePipe} from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
 import {SnackBarService} from '../../../Services/snack-bar.service';
 import {DeleteHeroComponent} from './delete-hero/delete-hero.component';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -24,6 +24,7 @@ export class HeroesComponent implements OnInit {
   heroesFilteredList: IHero[] = [];
   selectedHero = {} as IHero;
   loading: boolean = true;
+  showCloseBtn: boolean = false;
   @ViewChild('dt') table!: Table;
   items: MenuItem[] = [];
 
@@ -102,6 +103,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getItems(ev: any): any {
+    this.showCloseBtn = true;
     this.heroesFilteredList = this.heroesList;
     this.heroesFilteredList = this.heroesFilteredList.filter((c) =>
       c.name.toString().toLowerCase().indexOf(ev.name?.toLowerCase()) > -1 ||
@@ -198,5 +200,10 @@ export class HeroesComponent implements OnInit {
         this.heroesList.splice(index, 1);
       }
     });
+  }
+
+  onClearFilter(): void {
+    this.heroesFilteredList = this.heroesList;
+    this.showCloseBtn = false;
   }
 }
