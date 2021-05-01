@@ -88,7 +88,6 @@ export class HeroesComponent implements OnInit {
     });
     bottomSheetRef.afterDismissed().subscribe((result) => {
       if (result) {
-        console.log(result);
         const filterResult = {
           company: result.company,
           date: result.date,

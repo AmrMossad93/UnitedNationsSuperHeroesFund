@@ -7,11 +7,12 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {SnackBarService} from '../Services/snack-bar.service';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private snackBarService: SnackBarService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
         () => {
         },
         err => {
-          console.log(err);
+          this.snackBarService.errorAlert('Error Happened', 'Error');
         }
       )
     );
