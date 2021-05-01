@@ -28,9 +28,6 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const myuuid = uuidv4();
-
-    console.log('Your UUID is: ' + myuuid);
     this.items = [
       {
         label: 'Edit', icon: 'pi pi-pencil', command: () => {
