@@ -1,3 +1,54 @@
 <button mat-mini-fab color="warn" (click)="onNoClick()" class="float-right" mat-dialog-close>X</button>
 <h2 mat-dialog-title>Hero</h2>
-<p>add-edit-hero works!</p>
+<form #heroForm="ngForm">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="data.email" name="email" placeholder="Email" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Phone Number</mat-label>
+        <input matInput [(ngModel)]="data.phoneNumber" name="phoneNumber" placeholder="phoneNumber" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name" name="name" placeholder="Name" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Company</mat-label>
+        <input matInput [(ngModel)]="data.company" name="company" placeholder="Company" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Select Country</mat-label>
+        <mat-select [(ngModel)]="data.selectedCountry" name="country" required>
+          <mat-option *ngFor="let country of countryList" [value]="country">
+            <img width="30" class="mr-3" [src]="country.Flag">
+            {{country.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Choose A Date</mat-label>
+        <input matInput [(ngModel)]="data.date" name="date" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-12">
+      <button mat-flat-button color="primary" class="float-right" [disabled]="!heroForm.valid"
+              [mat-dialog-close]="data">Save
+      </button>
+    </div>
+  </div>
+</form>
