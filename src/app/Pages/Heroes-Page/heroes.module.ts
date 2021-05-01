@@ -7,12 +7,14 @@ import {AngularMaterialModule} from '../../DesignModules/angular-material.module
 import {PrimeNgModule} from '../../DesignModules/prime-ng.module';
 import { FilterHeroesComponent } from './heroes/filter-heroes/filter-heroes.component';
 import {FormsModule} from '@angular/forms';
+import { AddEditHeroComponent } from './heroes/add-edit-hero/add-edit-hero.component';
 
 
 @NgModule({
   declarations: [
     HeroesComponent,
-    FilterHeroesComponent
+    FilterHeroesComponent,
+    AddEditHeroComponent
   ],
     imports: [
         CommonModule,

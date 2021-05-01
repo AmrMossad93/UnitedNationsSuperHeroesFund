@@ -6,6 +6,8 @@ import {PrimeNGConfig} from 'primeng/api';
 import {ActivatedRoute} from '@angular/router';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
+import {MatDialog} from '@angular/material/dialog';
+import {AddEditHeroComponent} from './add-edit-hero/add-edit-hero.component';
 
 @Component({
   selector: 'app-heroes',
@@ -19,7 +21,7 @@ export class HeroesComponent implements OnInit {
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
 
-  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) {
+  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
@@ -75,9 +77,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getItems(ev: any): any {
-    console.log(ev);
     this.heroesFilteredList = this.heroesList;
-    console.log(this.heroesFilteredList.filter(c => c.phoneNumber === ev));
     this.heroesFilteredList = this.heroesFilteredList.filter((c) =>
       c.name.toString().toLowerCase().indexOf(ev.name?.toLowerCase()) > -1 ||
       c.date.toString().toLowerCase().indexOf(ev.date?.toLowerCase()) > -1 ||
@@ -86,6 +86,17 @@ export class HeroesComponent implements OnInit {
       c.phoneNumber.toString().toLowerCase().indexOf(ev.phoneNumber?.toLowerCase()) > -1 ||
       c.country.Name.toString().toLowerCase().indexOf(ev.country?.toLowerCase()) > -1
     );
-    console.log(this.heroesFilteredList);
+  }
+
+  onAddHero(): void {
+    const dialogRef = this.dialog.open(AddEditHeroComponent, {
+      data: {},
+      minWidth: '50vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 }
