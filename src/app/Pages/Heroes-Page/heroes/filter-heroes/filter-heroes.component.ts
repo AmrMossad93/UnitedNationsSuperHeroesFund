@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {CountryService} from '../../../../Services/country.service';
+import {ICountry} from '../../../../Models/country';
 
 @Component({
   selector: 'app-filter-heroes',
@@ -8,6 +9,7 @@ import {CountryService} from '../../../../Services/country.service';
   styleUrls: ['./filter-heroes.component.scss']
 })
 export class FilterHeroesComponent implements OnInit {
+  countryList: ICountry[] = [];
 
   constructor(private bottomSheetRef: MatBottomSheetRef<FilterHeroesComponent>,
               private countryService: CountryService,
@@ -19,8 +21,8 @@ export class FilterHeroesComponent implements OnInit {
   }
 
   getCountries(): void {
-    this.countryService.getCountryList().subscribe(res => {
-      console.log(res);
+    this.countryService.getCountryList().subscribe((res) => {
+      this.countryList = res;
     });
   }
 
