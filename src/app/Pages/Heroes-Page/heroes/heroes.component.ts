@@ -128,7 +128,6 @@ export class HeroesComponent implements OnInit {
           }
         } as IHero;
         this.heroesList.push(heroOBJ);
-        console.log(this.heroesList);
       }
     });
   }
