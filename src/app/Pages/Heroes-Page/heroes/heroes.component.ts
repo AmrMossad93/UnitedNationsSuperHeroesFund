@@ -8,6 +8,7 @@ import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AddEditHeroComponent} from './add-edit-hero/add-edit-hero.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-heroes',
@@ -22,7 +23,7 @@ export class HeroesComponent implements OnInit {
   @ViewChild('dt') table!: Table;
   items: MenuItem[] = [];
 
-  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog,) {
+  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog, public datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -109,6 +110,20 @@ export class HeroesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
+        const heroOBJ = {
+          name: result.name,
+          phoneNumber: result.phoneNumber,
+          email: result.email,
+          date: this.datePipe.transform(result.date, 'yyyy-MM-dd'),
+          company: result.company,
+          country: {
+            Flag: result.selectedCountry.Flag,
+            Name: result.selectedCountry.Name,
+            Alpha3Code: result.selectedCountry.Alpha3Code,
+            NativeName: result.selectedCountry.NativeName,
+          }
+        } as IHero;
+        this.heroesList.push(heroOBJ);
       }
     });
   }

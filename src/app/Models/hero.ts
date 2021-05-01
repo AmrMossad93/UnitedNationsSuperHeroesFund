@@ -3,7 +3,7 @@ export interface IHero {
   name: string;
   phoneNumber: string;
   email: string;
-  date: Date;
+  date: string;
   country: IHeroCountry;
   company: string;
 }
