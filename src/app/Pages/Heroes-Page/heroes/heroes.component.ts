@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IHero} from '../../../Models/hero';
 import {Table} from 'primeng/table';
-import {MenuItem, PrimeNGConfig} from 'primeng/api';
+import {MenuItem} from 'primeng/api';
 import {ActivatedRoute} from '@angular/router';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
