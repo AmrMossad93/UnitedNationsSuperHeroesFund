@@ -25,6 +25,11 @@ export class AddEditHeroComponent implements OnInit {
   getCountries(): void {
     this.countryService.getCountryList().subscribe((res) => {
       this.countryList = res;
+    }, error => {
+    }, () => {
+      if (this.data.id) {
+        this.data.selectedCountry = this.countryList.find(country => country.Alpha3Code === this.data.selectedCountry.Alpha3Code);
+      }
     });
   }
 

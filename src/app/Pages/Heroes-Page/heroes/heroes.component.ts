@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddEditHeroComponent} from './add-edit-hero/add-edit-hero.component';
 import {DatePipe} from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
+import {SnackBarService} from '../../../Services/snack-bar.service';
 
 
 @Component({
@@ -24,18 +25,23 @@ export class HeroesComponent implements OnInit {
   @ViewChild('dt') table!: Table;
   items: MenuItem[] = [];
 
-  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog, public datePipe: DatePipe) {
+  constructor(
+    private route: ActivatedRoute,
+    private bottomSheet: MatBottomSheet,
+    private snackBarService: SnackBarService,
+    public dialog: MatDialog,
+    public datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Edit', icon: 'pi pi-pencil', command: () => {
-          console.log(this.selectedHero);
+        label: 'Edit Hero', icon: 'pi pi-pencil', command: () => {
+          this.onEditHero(this.selectedHero);
         }
       },
       {
-        label: 'Delete', icon: 'pi pi-fw pi-times', command: () => {
+        label: 'Delete Hero', icon: 'pi pi-fw pi-times', command: () => {
           console.log(this.selectedHero);
         }
       }
@@ -125,6 +131,50 @@ export class HeroesComponent implements OnInit {
           }
         } as IHero;
         this.heroesList.push(heroOBJ);
+        this.snackBarService.addAlert(
+          'Added Successfully',
+          `${heroOBJ.name} Has Been Added As A Hero`,
+          'end');
+      }
+    });
+  }
+
+  onEditHero(hero: IHero): void {
+    const dialogRef = this.dialog.open(AddEditHeroComponent, {
+      data: {
+        id: hero.id,
+        name: hero.name,
+        phoneNumber: hero.phoneNumber,
+        email: hero.email,
+        date: hero.date,
+        company: hero.company,
+        selectedCountry: hero.country
+      },
+      minWidth: '50vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const index = this.heroesList.findIndex(x => x.id === result.id);
+        this.heroesList.splice(index, 1);
+        const heroOBJ = {
+          id: result.id,
+          name: result.name,
+          phoneNumber: result.phoneNumber,
+          email: result.email,
+          date: this.datePipe.transform(result.date, 'yyyy-MM-dd'),
+          company: result.company,
+          country: {
+            Flag: result.selectedCountry.Flag,
+            Name: result.selectedCountry.Name,
+            Alpha3Code: result.selectedCountry.Alpha3Code,
+            NativeName: result.selectedCountry.NativeName,
+          }
+        } as IHero;
+        this.heroesList.push(heroOBJ);
+        this.snackBarService.addAlert(
+          'Updated Successfully',
+          `${heroOBJ.name} Has Been Updated`,
+          'end');
       }
     });
   }
