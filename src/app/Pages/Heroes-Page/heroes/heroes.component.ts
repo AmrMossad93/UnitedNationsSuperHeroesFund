@@ -10,6 +10,7 @@ import {AddEditHeroComponent} from './add-edit-hero/add-edit-hero.component';
 import {DatePipe} from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
 import {SnackBarService} from '../../../Services/snack-bar.service';
+import {DeleteHeroComponent} from './delete-hero/delete-hero.component';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class HeroesComponent implements OnInit {
       },
       {
         label: 'Delete Hero', icon: 'pi pi-fw pi-times', command: () => {
+          this.onDeleteHero(this.selectedHero);
           console.log(this.selectedHero);
         }
       }
@@ -175,6 +177,23 @@ export class HeroesComponent implements OnInit {
           'Updated Successfully',
           `${heroOBJ.name} Has Been Updated`,
           'end');
+      }
+    });
+  }
+
+  onDeleteHero(hero: IHero): void {
+    const dialogRef = this.dialog.open(DeleteHeroComponent, {
+      data: {hero},
+      minWidth: '50vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBarService.deleteAlert(
+          'Deleted Successfully',
+          `${result.hero.name} Has Been Deleted`,
+          'end');
+        const index = this.heroesList.findIndex(x => x.id === result.id);
+        this.heroesList.splice(index, 1);
       }
     });
   }

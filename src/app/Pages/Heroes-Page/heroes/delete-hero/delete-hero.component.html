@@ -1,0 +1,24 @@
+<button mat-mini-fab color="warn" (click)="onNoClick()" class="float-right" mat-dialog-close>X</button>
+<h2 mat-dialog-title>Hero</h2>
+<div class="alert alert-danger " role="alert">
+  <div class="row text-center">
+    <div class="col-12 ">
+      <i class="fas fa-exclamation-triangle fa-5x animate__animated animate__infinite animate__pulse"></i><br>
+    </div>
+    <div class="col-12">
+      <br>
+      <h4>Are You Sure To Delete The Hero <br><b>{{data.hero.name}}</b> ?!!</h4>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <button mat-button (click)="onNoClick()" class="w-100" mat-dialog-close>Cancel</button>
+  </div>
+  <div class="col-md-6">
+    <button mat-button color="warn" class="w-100" [mat-dialog-close]="data" cdkFocusInitial>
+      Delete
+    </button>
+  </div>
+</div>

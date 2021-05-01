@@ -8,13 +8,15 @@ import {PrimeNgModule} from '../../DesignModules/prime-ng.module';
 import { FilterHeroesComponent } from './heroes/filter-heroes/filter-heroes.component';
 import {FormsModule} from '@angular/forms';
 import { AddEditHeroComponent } from './heroes/add-edit-hero/add-edit-hero.component';
+import { DeleteHeroComponent } from './heroes/delete-hero/delete-hero.component';
 
 
 @NgModule({
   declarations: [
     HeroesComponent,
     FilterHeroesComponent,
-    AddEditHeroComponent
+    AddEditHeroComponent,
+    DeleteHeroComponent
   ],
     imports: [
         CommonModule,
