@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.15.3",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.0.0-alpha1",
+    "ngx-spinner": "^11.0.1",
     "primeicons": "^4.1.0",
     "primeng": "^11.4.0",
     "rxjs": "~6.6.0",

@@ -9,6 +9,7 @@ import {AngularMaterialModule} from './DesignModules/angular-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './Interceptors';
 import {DatePipe} from '@angular/common';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {DatePipe} from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [httpInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
