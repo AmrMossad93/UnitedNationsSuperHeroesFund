@@ -86,7 +86,8 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-hero>
-      <tr class="p-selectable-row" [pContextMenuRow]="hero">
+      <tr class="p-selectable-row" [pContextMenuRow]="hero" matTooltip="Right Click For Edit Or Delete This Hero"
+          [matTooltipPosition]="'below'">
         <td>
           {{hero.name}}
         </td>
