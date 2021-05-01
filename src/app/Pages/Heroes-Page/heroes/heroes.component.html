@@ -112,7 +112,13 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="6">No heroes found.</td>
+        <td colspan="6">
+          <div class="alert alert-warning text-center " role="alert">
+            <p class="animate__animated animate__infinite animate__pulse">
+              No Heroes Found.
+            </p>
+          </div>
+        </td>
       </tr>
     </ng-template>
   </p-table>
