@@ -17,6 +17,8 @@
            [rowHover]="true"
            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
            [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [(contextMenuSelection)]="selectedHero"
+           [contextMenu]="cm"
            [filterDelay]="0" [globalFilterFields]="['name','country.Name','phoneNumber','email', 'company']">
     <ng-template pTemplate="caption">
       <mat-card>
@@ -84,7 +86,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-hero>
-      <tr class="p-selectable-row">
+      <tr class="p-selectable-row" [pContextMenuRow]="hero">
         <td>
           {{hero.name}}
         </td>
@@ -114,3 +116,4 @@
     </ng-template>
   </p-table>
 </div>
+<p-contextMenu #cm [model]="items"></p-contextMenu>

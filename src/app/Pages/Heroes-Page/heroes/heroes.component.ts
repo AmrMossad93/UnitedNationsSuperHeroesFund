@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeroesService} from '../../../Services/heroes.service';
 import {IHero} from '../../../Models/hero';
 import {Table} from 'primeng/table';
-import {PrimeNGConfig} from 'primeng/api';
+import {MenuItem, PrimeNGConfig} from 'primeng/api';
 import {ActivatedRoute} from '@angular/router';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
@@ -20,11 +20,24 @@ export class HeroesComponent implements OnInit {
   selectedHero = {} as IHero;
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
+  items: MenuItem[] = [];
 
   constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
+    this.items = [
+      {
+        label: 'Edit', icon: 'pi pi-pencil', command: () => {
+          console.log(this.selectedHero);
+        }
+      },
+      {
+        label: 'Delete', icon: 'pi pi-fw pi-times', command: () => {
+          console.log(this.selectedHero);
+        }
+      }
+    ];
     this.getHeroList();
   }
 

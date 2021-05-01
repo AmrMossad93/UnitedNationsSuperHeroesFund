@@ -4,7 +4,7 @@ import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextModule} from 'primeng/inputtext';
-
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 @NgModule({
   declarations: [],
@@ -13,13 +13,15 @@ import {InputTextModule} from 'primeng/inputtext';
     TableModule,
     MultiSelectModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ContextMenuModule
   ],
   exports: [
     TableModule,
     MultiSelectModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ContextMenuModule
   ]
 })
 export class PrimeNgModule {
