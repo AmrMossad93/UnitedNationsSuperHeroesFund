@@ -13,7 +13,7 @@
       </div>
     </div>
   </mat-card>
-  <p-table #dt [value]="heroesList" [(selection)]="selectedHero" dataKey="id" styleClass="p-datatable-customers"
+  <p-table #dt [value]="heroesFilteredList" [(selection)]="selectedHero" dataKey="id" styleClass="p-datatable-customers"
            [rowHover]="true"
            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
            [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

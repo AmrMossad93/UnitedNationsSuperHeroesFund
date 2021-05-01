@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {CountryService} from '../../../../Services/country.service';
 import {ICountry} from '../../../../Models/country';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-filter-heroes',
@@ -13,6 +14,7 @@ export class FilterHeroesComponent implements OnInit {
 
   constructor(private bottomSheetRef: MatBottomSheetRef<FilterHeroesComponent>,
               private countryService: CountryService,
+              public datePipe: DatePipe,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
   }
 
@@ -27,6 +29,9 @@ export class FilterHeroesComponent implements OnInit {
   }
 
   onClose(event: MouseEvent): void {
+    if (this.data.date) {
+      this.data.date = this.datePipe.transform(this.data.date, 'yyyy-MM-dd');
+    }
     this.bottomSheetRef.dismiss(this.data);
     event.preventDefault();
   }

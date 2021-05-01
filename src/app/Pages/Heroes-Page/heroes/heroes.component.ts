@@ -14,6 +14,7 @@ import {FilterHeroesComponent} from './filter-heroes/filter-heroes.component';
 })
 export class HeroesComponent implements OnInit {
   heroesList: IHero[] = [];
+  heroesFilteredList: IHero[] = [];
   selectedHero = {} as IHero;
   loading: boolean = true;
   @ViewChild('dt') table!: Table;
@@ -29,6 +30,7 @@ export class HeroesComponent implements OnInit {
     this.loading = true;
     this.route.data.subscribe((res) => {
       this.heroesList = res.list;
+      this.heroesFilteredList = res.list;
       this.loading = false;
     });
   }
@@ -54,11 +56,36 @@ export class HeroesComponent implements OnInit {
 
   openFilterBottomSheet(): void {
     const bottomSheetRef = this.bottomSheet.open(FilterHeroesComponent, {
-      data: {amr: 'amr'},
+      data: {},
     });
     bottomSheetRef.afterDismissed().subscribe((result) => {
-      console.log('Bottom sheet has been dismissed.');
-      console.log(result);
+      if (result) {
+        console.log(result);
+        const filterResult = {
+          company: result.company,
+          date: result.date,
+          email: result.email,
+          name: result.name,
+          phoneNumber: result.phoneNumber,
+          country: result.selectedCountry?.Name,
+        };
+        this.getItems(filterResult);
+      }
     });
+  }
+
+  getItems(ev: any): any {
+    console.log(ev);
+    this.heroesFilteredList = this.heroesList;
+    console.log(this.heroesFilteredList.filter(c => c.phoneNumber === ev));
+    this.heroesFilteredList = this.heroesFilteredList.filter((c) =>
+      c.name.toString().toLowerCase().indexOf(ev.name?.toLowerCase()) > -1 ||
+      c.date.toString().toLowerCase().indexOf(ev.date?.toLowerCase()) > -1 ||
+      c.email.toString().toLowerCase().indexOf(ev.email?.toLowerCase()) > -1 ||
+      c.company.toString().toLowerCase().indexOf(ev.company?.toLowerCase()) > -1 ||
+      c.phoneNumber.toString().toLowerCase().indexOf(ev.phoneNumber?.toLowerCase()) > -1 ||
+      c.country.Name.toString().toLowerCase().indexOf(ev.country?.toLowerCase()) > -1
+    );
+    console.log(this.heroesFilteredList);
   }
 }

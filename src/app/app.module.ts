@@ -8,6 +8,7 @@ import {NavbarComponent} from './Layouts/navbar/navbar.component';
 import {AngularMaterialModule} from './DesignModules/angular-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './Interceptors';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {httpInterceptorProviders} from './Interceptors';
     AngularMaterialModule,
     HttpClientModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

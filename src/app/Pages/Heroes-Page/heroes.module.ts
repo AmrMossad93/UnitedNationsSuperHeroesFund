@@ -6,6 +6,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import {AngularMaterialModule} from '../../DesignModules/angular-material.module';
 import {PrimeNgModule} from '../../DesignModules/prime-ng.module';
 import { FilterHeroesComponent } from './heroes/filter-heroes/filter-heroes.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import { FilterHeroesComponent } from './heroes/filter-heroes/filter-heroes.comp
     HeroesComponent,
     FilterHeroesComponent
   ],
-  imports: [
-    CommonModule,
-    HeroesRoutingModule,
-    AngularMaterialModule,
-    PrimeNgModule
-  ]
+    imports: [
+        CommonModule,
+        HeroesRoutingModule,
+        AngularMaterialModule,
+        PrimeNgModule,
+        FormsModule
+    ]
 })
 export class HeroesModule { }
