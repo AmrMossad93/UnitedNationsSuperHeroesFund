@@ -11,6 +11,7 @@ import {DatePipe} from '@angular/common';
 import {v4 as uuidv4} from 'uuid';
 import {SnackBarService} from '../../../Services/snack-bar.service';
 import {DeleteHeroComponent} from './delete-hero/delete-hero.component';
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -31,10 +32,13 @@ export class HeroesComponent implements OnInit {
     private bottomSheet: MatBottomSheet,
     private snackBarService: SnackBarService,
     public dialog: MatDialog,
+    private titleService: Title,
     public datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('U.N.I.S.H.F - Heroes Page');
+
     this.items = [
       {
         label: 'Edit Hero', icon: 'pi pi-pencil', command: () => {
@@ -44,7 +48,6 @@ export class HeroesComponent implements OnInit {
       {
         label: 'Delete Hero', icon: 'pi pi-fw pi-times', command: () => {
           this.onDeleteHero(this.selectedHero);
-          console.log(this.selectedHero);
         }
       }
     ];
